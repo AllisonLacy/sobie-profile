@@ -1,15 +1,21 @@
 {
   "name": "sobie-profile",
   "version": "1.0.0",
+  "description": "Allison Lacy sobie-profile",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^4.21.2"
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongodb": "^6.13.0",
+    "nodemon": "^3.1.9"
   }
 }
