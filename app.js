@@ -1,16 +1,16 @@
-require('dotenv').config()
 const express = require('express')
+require('dotenv').config()
+const shajs = require('sha.js')
 const app = express()
-
-const { MongoClient, ServerApiVersion } = require('mongodb'); 
-const uri = process.env.MONGO_URI; 
+const port = process.env.PORT || 3000;  
+const bodyParser = require('body-parser')
+const { ObjectId } = require('mongodb')
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = process.env.MONGO_URI;
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
-// const path = require('path')
-// app.use('/static', express.static(path.join(__dirname, 'public')))
-
-
+app.use(bodyParser.urlencoded({extended: true})); 
+app.use(express.static(__dirname + '/public'))
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -21,36 +21,66 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
+const mongoCollection = client.db("barrySobieProfile").collection("barrySobieBlog"); 
+
+function initProfileData() {
+
+  mongoCollection.insertOne({ 
+    title: "this is blog title",
+    post: "this is the post"
+  });
+
 }
-// run().catch(console.dir);
+
+// initProfileData(); 
 
 
-app.get('/', function (req, res) {
-  res.sendFile('index.html')
+app.get('/', async function (req, res) {
+  
+  let results = await mongoCollection.find({}).toArray(); 
+  
+  res.render('profile', 
+    { profileData : results} ); 
+
 })
 
-//ejs stuff
-app.get('/ejs', async (req, res) => {
- 
-  await client.connect();
-  let result = await client.db("allisons-db").collection("whatever-collection").find({}).toArray();
+app.post('/insert', async (req,res)=> {
 
-  console.log(result);
-
-  res.render('index', {
-    ejsResult : result
+  let results = await mongoCollection.insertOne({ 
+    title: req.body.title,
+    post: req.body.post
   });
-});
 
-app.listen(3000)
+  res.redirect('/');
+
+}); 
+app.post('/delete', async function (req, res) {
+  
+    let result = await mongoCollection.findOneAndDelete( 
+    {
+      "_id": new ObjectId(req.body.deleteId)
+    }
+  ).then(result => {
+    
+    res.redirect('/');
+  })
+
+}); 
+
+app.post('/update', async (req,res)=>{
+  let result = await mongoCollection.findOneAndUpdate( 
+  {_id: ObjectId.createFromHexString(req.body.updateId)}, { 
+    $set: 
+      {
+        title : req.body.updateTitle, 
+        post : req.body.updatePost 
+      }
+     }
+  ).then(result => {
+  console.log(result); 
+  res.redirect('/');
+})
+}); 
+
+
+app.listen(port, ()=> console.log(`server is running on ... localhost:${port}`) );
