@@ -1,7 +1,7 @@
 {
   "name": "sobie-profile",
   "version": "1.0.0",
-  "description": "Allison Lacy sobie-profile",
+  "description": "CIS 486 The Sobie Dev Co. Profile",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
@@ -15,16 +15,9 @@
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "mongodb": "^6.13.0",
-    "nodemon": "^3.1.9"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AllisonLacy/sobie-profile.git"
-  },
-  "bugs": {
-    "url": "https://github.com/AllisonLacy/sobie-profile/issues"
-  },
-  "homepage": "https://github.com/AllisonLacy/sobie-profile#readme"
+    "mongodb": "^6.12.0",
+    "nodemon": "^3.1.9",
+    "sha.js": "^2.4.11",
+    "sha256": "^0.2.0"
+  }
 }
