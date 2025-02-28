@@ -21,7 +21,7 @@ const client = new MongoClient(uri, {
   }
 });
 
-const mongoCollection = client.db("barrySobieProfile").collection("barrySobieBlog"); 
+const mongoCollection = client.db("Suggestions").collection("one"); 
 
 function initProfileData() {
 
@@ -81,6 +81,7 @@ app.post('/update', async (req,res)=>{
   res.redirect('/');
 })
 }); 
+
 
 
 app.listen(port, ()=> console.log(`server is running on ... localhost:${port}`) );
