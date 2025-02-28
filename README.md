@@ -1,4 +1,5 @@
-env:MONGO_URI = "mongodb+srv://allisonpl:Unalions!1102@cluster0.z6lml.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+env:
+MONGO_URI = "mongodb+srv://allisonpl:Unalions!1102@cluster0.z6lml.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 
 Jig 1
