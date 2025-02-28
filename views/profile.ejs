@@ -12,34 +12,34 @@
 
 <main>
 
-    <form method="POST" action="insert/">
-        <input name="title">
-        <input name="post">
-        <button class="btn btn-primary" role="submit">new post</button>
-      </form>
-
-      
-    <% profileData.forEach(result=> { %>
-        <div class="col-md-8">
-        
-  
-      <form method="POST" action="update/">
-        <input name="updateTitle" value="<%= result.title %>">
-        <input name="updatePost" value="<%= result.post %>"> 
-        <input type="hidden" name="updateId" value="<%=result._id %>">
-        <button class="btn btn-primary" role="submit"><i class="bi bi-pencil"></i></button>
-      </form>
-      
-  
-  
-      <form method="POST" action="delete/">
-        <input type="hidden" name="deleteId" value="<%=result._id %>">
-        <button class="btn btn-primary" role="submit"><i class="bi bi-trash3"></i></button>
-      </form>
-  
-  
+ <div class="container">
+        <div class="card">
+            <img id="profile-pic" src="https://th.bing.com/th/id/OIP.edEHUKlO5QFyewRpgjlHSwAAAA?w=192&h=192&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="Allison Lacy">
+            <div class="profile-header">
+                <h1>Allison Lacy</h1>
+            </div>
+            <div class="profile-bio">
+                <p>I am a senior at the University of North Alabama majoring in computer information systems.</p>
+            </div>
+            <div class="profile-links">
+                <a href="https://github.com/AllisonLacy" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/allison-lacy-a45118243/" target="_blank">LinkedIn</a>
+            </div>
+            <div class="profile-work">
+                <h2>Projects</h2>
+                <div class="work-item">
+                    <h3>Project 1</h3>
+                    <p>I used HTML, CSS, and JS to create an interactive game.</p>
+                    <a href="https://codepen.io/AllisonLacy/pen/JjQeobQ" target="_blank">Square Game</a>
+                </div>
+                <div class="work-item">
+                    <h3>Project 2</h3>
+                    <p>This project takes input and generates a random spirit animal.</p>
+                    <a href="https://codepen.io/AllisonLacy/pen/eYwoWyj" target="_blank">Spirit Animal</a>
+                </div>
+            </div>
+        </div>
     </div>
-      <% }); %>
 
 </main>
 
