@@ -1,7 +1,7 @@
 {
   "name": "sobie-profile",
   "version": "1.0.0",
-  "description": "CIS 486 The Sobie Dev Co. Profile",
+  "description": "Sobie Dev Profile",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
